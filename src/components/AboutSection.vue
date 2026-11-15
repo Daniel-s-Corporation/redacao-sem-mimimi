@@ -35,11 +35,28 @@ import foto from '../assets/img/prof-quem-sou.webp'
 
 <style scoped>
 .about {
+  position: relative;
+  overflow: hidden;
   background: var(--color-primary);
   color: var(--color-tertiary);
 }
 
+/* Textura: quadrados em contorno inclinados a 45°, intercalados */
+.about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='1.2'%3E%3Crect x='15' y='15' width='18' height='18' rx='2' transform='rotate(45 24 24)'/%3E%3Crect x='63' y='63' width='18' height='18' rx='2' transform='rotate(45 72 72)'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 96px 96px;
+  opacity: 0.07;
+  /* Some aos poucos em direção ao centro, para não competir com o texto */
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 50%, rgb(0 0 0 / 0.4), #000 90%);
+}
+
 .about__inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
   gap: 56px;
@@ -102,6 +119,14 @@ import foto from '../assets/img/prof-quem-sou.webp'
   .about__media img {
     max-width: 380px;
     margin-inline: auto;
+  }
+}
+
+/* Celular: os dois botões com a mesma largura, um embaixo do outro */
+@media (max-width: 640px) {
+  .about__actions .btn {
+    flex: 1 1 100%;
+    text-align: center;
   }
 }
 </style>
