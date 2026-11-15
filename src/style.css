@@ -1,0 +1,191 @@
+/* ==========================================================
+   Redação sem mimimi — design tokens
+   ========================================================== */
+:root {
+  /* Paleta da marca */
+  --color-primary: #0b3910;
+  --color-secondary: #00b3ff;
+  --color-tertiary: #dbf2ff;
+  --color-complementary: #617999;
+  --color-black: #6d6d6d;
+  --color-white: #ffffff;
+
+  /* Papéis semânticos */
+  --color-bg: var(--color-white);
+  --color-surface: var(--color-tertiary);
+  --color-text: var(--color-black);
+  --color-heading: var(--color-primary);
+  --color-muted: var(--color-complementary);
+  --color-accent: var(--color-secondary);
+
+  /* Tipografia */
+  --font-family: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+  --fw-extrabold: 800;
+
+  /* Layout */
+  --container: 1200px;
+  --gutter: 16px;
+  --radius: 12px;
+
+  font-family: var(--font-family);
+  font-weight: var(--fw-regular);
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.5em;
+  color: var(--color-heading);
+  font-weight: var(--fw-extrabold);
+  line-height: 1.15;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.9em 1.8em;
+  border: 0;
+  border-radius: 999px;
+  font: inherit;
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.btn--primary {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-white);
+  box-shadow: inset 0 0 0 2px var(--color-white);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 68px;
+}
+
+.btn--sm {
+  padding: 0.6em 1.3em;
+  font-size: 0.9rem;
+}
+
+.btn--dark {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn:focus-visible,
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-secondary);
+  outline-offset: 3px;
+}
+
+/* Seções */
+.section {
+  padding-block: clamp(64px, 9vw, 112px);
+}
+
+.section-head {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.section-head p {
+  font-size: 1.05rem;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.6vw, 2.6rem);
+}
+
+.section-title--light {
+  color: var(--color-white);
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.35em 0.9em;
+  border-radius: 999px;
+  background: var(--color-tertiary);
+  color: var(--color-primary);
+  font-size: 0.8rem;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.02em;
+}
+
+.eyebrow--light {
+  background: color-mix(in srgb, var(--color-secondary) 22%, transparent);
+  color: var(--color-tertiary);
+}
+
+.link-arrow {
+  color: var(--color-primary);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  border-bottom: 2px solid var(--color-secondary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    transition: none !important;
+  }
+}
