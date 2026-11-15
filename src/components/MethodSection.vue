@@ -83,13 +83,68 @@ const pillars = [
   margin: 64px 0 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 32px 20px;
 }
 
+/* Cada pilar é um balão de conversa; os pares têm o rabinho do outro lado */
 .pillar {
+  --bubble-bg: var(--color-tertiary);
+  position: relative;
+  margin-bottom: 18px;
   padding: 28px 24px;
-  background: var(--color-tertiary);
-  border-radius: var(--radius);
+  background: var(--bubble-bg);
+  border-radius: 22px;
+  transform-origin: 15% 100%;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease,
+    background-color 0.25s ease;
+}
+
+.pillar::after {
+  content: '';
+  position: absolute;
+  left: 28px;
+  bottom: -17px;
+  width: 30px;
+  height: 18px;
+  background: var(--bubble-bg);
+  clip-path: polygon(0 0, 100% 0, 8% 100%);
+  transform-origin: top left;
+  transition:
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.25s ease;
+}
+
+.pillar:nth-child(even) {
+  transform-origin: 85% 100%;
+}
+
+.pillar:nth-child(even)::after {
+  left: auto;
+  right: 28px;
+  clip-path: polygon(0 0, 100% 0, 92% 100%);
+  transform-origin: top right;
+}
+
+.pillar:hover {
+  --bubble-bg: var(--color-white);
+  transform: translateY(-8px) rotate(-1.5deg);
+  box-shadow:
+    0 0 0 2px var(--color-secondary),
+    0 18px 36px -18px color-mix(in srgb, var(--color-primary) 55%, transparent);
+}
+
+.pillar:nth-child(even):hover {
+  transform: translateY(-8px) rotate(1.5deg);
+}
+
+.pillar:hover::after {
+  transform: rotate(-8deg);
+}
+
+.pillar:nth-child(even):hover::after {
+  transform: rotate(8deg);
 }
 
 .pillar__n {
@@ -98,6 +153,12 @@ const pillars = [
   color: var(--color-secondary);
   font-weight: var(--fw-extrabold);
   font-size: 1.5rem;
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.pillar:hover .pillar__n {
+  transform: scale(1.18);
 }
 
 .pillar h3 {
@@ -108,6 +169,22 @@ const pillars = [
   margin: 0;
   font-size: 0.95rem;
   color: var(--color-complementary);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pillar,
+  .pillar::after,
+  .pillar__n {
+    transition: none;
+  }
+
+  .pillar:hover,
+  .pillar:nth-child(even):hover,
+  .pillar:hover::after,
+  .pillar:nth-child(even):hover::after,
+  .pillar:hover .pillar__n {
+    transform: none;
+  }
 }
 
 @media (max-width: 960px) {
@@ -128,6 +205,15 @@ const pillars = [
 
   .pillars {
     grid-template-columns: 1fr;
+  }
+
+  /* No celular os balões alternam de lado, como numa conversa */
+  .pillar {
+    width: 92%;
+  }
+
+  .pillar:nth-child(even) {
+    margin-left: auto;
   }
 }
 </style>

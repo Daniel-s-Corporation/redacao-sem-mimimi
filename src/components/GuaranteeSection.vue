@@ -18,12 +18,32 @@
 
 <style scoped>
 .guarantee {
+  position: relative;
+  overflow: hidden;
   padding-block: 56px;
   background: var(--color-secondary);
   color: var(--color-primary);
 }
 
+/*
+ * Textura: malha contínua de losangos em traço branco.
+ * Mais visível nas pontas e quase sumindo atrás do texto.
+ */
+.guarantee::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 20 20 0 40 20 20 40Z' fill='none' stroke='%23ffffff' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: 40px 40px;
+  background-position: center;
+  opacity: 0.22;
+  mask-image: radial-gradient(ellipse 45% 90% at 45% 50%, rgb(0 0 0 / 0.15), #000 100%);
+}
+
 .guarantee__inner {
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   gap: 32px;
@@ -65,6 +85,10 @@ p {
 }
 
 @media (max-width: 640px) {
+  .guarantee::before {
+    mask-image: radial-gradient(ellipse 75% 45% at 50% 62%, rgb(0 0 0 / 0.15), #000 100%);
+  }
+
   .guarantee__inner {
     flex-direction: column;
     text-align: center;

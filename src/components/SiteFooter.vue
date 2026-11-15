@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { links, nav } from '../data/site'
+import logo from '../assets/img/logo-white.webp'
 
 const year = new Date().getFullYear()
 </script>
@@ -8,7 +9,10 @@ const year = new Date().getFullYear()
   <footer class="footer">
     <div class="container footer__inner">
       <div>
-        <a href="#topo" class="logo">Redação <span>sem mimimi</span></a>
+        <a href="#topo" class="logo" aria-label="Redação sem mimimi — voltar ao topo">
+          <img class="logo__img" :src="logo" alt="" width="64" height="60" loading="lazy" />
+          <span>Redação <span class="logo__accent">sem mimimi</span></span>
+        </a>
         <p class="footer__tag">Redação e Português para concursos.<br />Não temos escola física — todo o conteúdo é on-line.</p>
       </div>
 
@@ -36,7 +40,8 @@ const year = new Date().getFullYear()
 
 <style scoped>
 .footer {
-  background: #072509;
+  background: var(--color-primary-dark);
+  border-top: 1px solid color-mix(in srgb, var(--color-secondary) 25%, transparent);
   color: var(--color-tertiary);
   padding-top: 56px;
   font-size: 0.95rem;
@@ -49,13 +54,22 @@ const year = new Date().getFullYear()
 }
 
 .logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
   color: var(--color-white);
   font-weight: var(--fw-extrabold);
   font-size: 1.25rem;
   text-decoration: none;
 }
 
-.logo span {
+.logo__img {
+  flex: none;
+  width: 64px;
+  height: auto;
+}
+
+.logo__accent {
   color: var(--color-secondary);
 }
 

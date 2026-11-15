@@ -4,6 +4,7 @@
 :root {
   /* Paleta da marca */
   --color-primary: #0b3910;
+  --color-primary-dark: #041705; /* rodapé */
   --color-secondary: #00b3ff;
   --color-tertiary: #dbf2ff;
   --color-complementary: #617999;
